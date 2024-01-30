@@ -7,13 +7,13 @@ function App() {
 
   useEffect(() => {
     // Fetch todos from the backend when the component mounts
-    axios.get('http://localhost:5000/api/todos')
+    axios.get('https://backend-todo-f1bj.onrender.com/api/todos')
       .then(response => setTodos(response.data))
       .catch(error => console.error('Error fetching todos:', error));
   }, []);
 
   const addTodo = () => {
-    axios.post('http://localhost:5000/api/todos', { text })
+    axios.post('https://backend-todo-f1bj.onrender.com/api/todos', { text })
       .then(response => setTodos([...todos, response.data]))
       .catch(error => console.error('Error adding todo:', error));
 
@@ -21,7 +21,7 @@ function App() {
   };
 
   const updateTodo = (id, updatedText, completed) => {
-    axios.put(`http://localhost:5000/api/todos/${id}`, { text: updatedText, completed })
+    axios.put(`https://backend-todo-f1bj.onrender.com/api/todos/${id}`, { text: updatedText, completed })
       .then(response => {
         const updatedTodos = todos.map(todo => (todo._id === id ? response.data : todo));
         setTodos(updatedTodos);
@@ -30,7 +30,7 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    axios.delete(`http://localhost:5000/api/todos/${id}`)
+    axios.delete(`https://backend-todo-f1bj.onrender.com/api/todos/${id}`)
       .then(() => {
         const updatedTodos = todos.filter(todo => todo._id !== id);
         setTodos(updatedTodos);
